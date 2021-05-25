@@ -1,4 +1,4 @@
-# Kong-JWT-ACL demo  
+# Kong-ACL-JWT demo  
 
 Use Kong gateway and acls + jwt plugin for Authorization  
 
