@@ -59,14 +59,19 @@ curl -X POST $BASE_URL:8001/consumers/user1/jwt -H "Content-Type: application/x-
 curl -X POST $BASE_URL:8001/consumers/provider1/jwt -H "Content-Type: application/x-www-form-urlencoded"\
     --data "key=MZTW8Efs4MvPeuMoHgKK5rkOi9e5v5P9"\
     --data "secret=jiMw0TW3HgOK9um7Vp8ySlgtQfMfiGCy"
-
-#-----------User---------------------
-#Enable jwt-header-claim
-curl -X POST $BASE_URL:8001/routes/user-route/plugins \
+#-------GLOBAL PLUGIN-----------------------
+curl -X POST $BASE_URL:8001/routes/plugins \
   --data "name=jwt-claims-headers" \
   --data "config.uri_param_names=jwt" \
   --data "config.claims_to_include=.*" \
   --data "config.continue_on_error=true"
+#-----------User---------------------
+#Enable jwt-header-claim
+# curl -X POST $BASE_URL:8001/routes/user-route/plugins \
+#   --data "name=jwt-claims-headers" \
+#   --data "config.uri_param_names=jwt" \
+#   --data "config.claims_to_include=.*" \
+#   --data "config.continue_on_error=true"
 #Enable CORS
 curl -X POST $BASE_URL:8001/routes/user-route/plugins \
     --data "name=cors"  \
@@ -101,12 +106,12 @@ curl -X POST $BASE_URL:8001/routes/user-route/plugins \
  --data "config.claims_to_verify=exp"
 
  #-------Provider-----------
- #Enable jwt-header-claim
-curl -X POST $BASE_URL:8001/routes/provider-route/plugins \
-  --data "name=jwt-claims-headers" \
-  --data "config.uri_param_names=jwt" \
-  --data "config.claims_to_include=.*" \
-  --data "config.continue_on_error=true"
+#  #Enable jwt-header-claim
+# curl -X POST $BASE_URL:8001/routes/provider-route/plugins \
+#   --data "name=jwt-claims-headers" \
+#   --data "config.uri_param_names=jwt" \
+#   --data "config.claims_to_include=.*" \
+#   --data "config.continue_on_error=true"
 #Enable CORS
 curl -X POST $BASE_URL:8001/routes/provider-route/plugins \
     --data "name=cors"  \
@@ -142,11 +147,11 @@ curl -X POST $BASE_URL:8001/routes/provider-route/plugins \
 
  #-------------------Admin-------------
  #Enable jwt-header-claim
-curl -X POST $BASE_URL:8001/routes/admin-route/plugins \
-  --data "name=jwt-claims-headers" \
-  --data "config.uri_param_names=jwt" \
-  --data "config.claims_to_include=.*" \
-  --data "config.continue_on_error=true"
+# curl -X POST $BASE_URL:8001/routes/admin-route/plugins \
+#   --data "name=jwt-claims-headers" \
+#   --data "config.uri_param_names=jwt" \
+#   --data "config.claims_to_include=.*" \
+#   --data "config.continue_on_error=true"
 #Enable CORS
 curl -X POST $BASE_URL:8001/routes/admin-route/plugins \
     --data "name=cors"  \
@@ -182,11 +187,11 @@ curl -X POST $BASE_URL:8001/routes/admin-route/plugins \
 
  #-------------------Public-------------
  #Enable jwt-header-claim
-curl -X POST $BASE_URL:8001/routes/admin-route/plugins \
-  --data "name=jwt-claims-headers" \
-  --data "config.uri_param_names=jwt" \
-  --data "config.claims_to_include=.*" \
-  --data "config.continue_on_error=true"
+# curl -X POST $BASE_URL:8001/routes/admin-route/plugins \
+#   --data "name=jwt-claims-headers" \
+#   --data "config.uri_param_names=jwt" \
+#   --data "config.claims_to_include=.*" \
+#   --data "config.continue_on_error=true"
 #Enable CORS
 curl -X POST $BASE_URL:8001/routes/public-route/plugins \
     --data "name=cors"  \
